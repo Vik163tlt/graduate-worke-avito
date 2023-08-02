@@ -1,9 +1,16 @@
 package ru.skypro.homework.service;
 
-import ru.skypro.homework.dto.Register;
+import org.hibernate.SQLQuery;
+import ru.skypro.homework.dto.RegisterDto;
 
 public interface AuthService {
     boolean login(String userName, String password);
 
-    boolean register(Register register);
+    boolean register(RegisterDto registerDto);
+
+
 }
+
+
+
+
