@@ -1,6 +1,5 @@
 package ru.skypro.homework.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,8 +29,6 @@ public class Comment {
     Long createdTime;
 
     String text;
-
-
 }
 
 

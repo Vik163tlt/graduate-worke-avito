@@ -1,19 +1,18 @@
-package ru.skypro.homework.service;
+package ru.skypro.homework.mappers;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import ru.skypro.homework.dto.AdDto;
-import ru.skypro.homework.dto.AdsDto;
 import ru.skypro.homework.dto.ExtendedAdDto;
 import ru.skypro.homework.model.Ad;
 import ru.skypro.homework.model.User;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+@Component
 public class AdMapperService {
-    // Метод для преобразования DTO в сущность для сохранения в базе данных.
+
+    // Метод для преобразования DTO в сущность, для сохранения в базе данных.
     public Ad mapToEntity(AdDto adDTO, User user) {
         Ad adEntity = new Ad();
         adEntity.setPk(adDTO.getPk());
@@ -24,6 +23,7 @@ public class AdMapperService {
                 adEntity.setDescription("default description");
         return adEntity;
     }
+
     // Метод для преобразования сущности из базы данных в DTO для ответа клиенту.
     public AdDto mapToDto(Ad adEntity) {
         AdDto adDTO = new AdDto();
@@ -34,6 +34,7 @@ public class AdMapperService {
         adDTO.setTitle(adEntity.getTitle());
         return adDTO;
     }
+
     public ExtendedAdDto mapToExtendedDto (Ad ad){
         ExtendedAdDto extendedAdDto = new ExtendedAdDto();
         extendedAdDto.setPk(ad.getPk());

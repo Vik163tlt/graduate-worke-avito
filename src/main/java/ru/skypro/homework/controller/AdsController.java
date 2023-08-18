@@ -2,32 +2,32 @@ package ru.skypro.homework.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import ru.skypro.homework.dto.*;
+import ru.skypro.homework.dto.AdDto;
+import ru.skypro.homework.dto.AdsDto;
+import ru.skypro.homework.dto.CreateOrUpdateAdDto;
+import ru.skypro.homework.dto.ExtendedAdDto;
 import ru.skypro.homework.exception.UserNotFoundException;
-import ru.skypro.homework.service.impl.AdsService;
+import ru.skypro.homework.service.AdsService;
 
 import java.io.IOException;
 
 
 @Slf4j
-@CrossOrigin(value = "http://localhost:3000")
 @RestController
+@AllArgsConstructor
+@CrossOrigin(value = "http://localhost:3000")
 @RequestMapping("/ads")
 public class AdsController {
 
     private final AdsService adsService;
-
-    public AdsController(AdsService adsService) {
-        this.adsService = adsService;
-    }
 
     @GetMapping()
     @Operation(summary = "Получение всех объявлений")

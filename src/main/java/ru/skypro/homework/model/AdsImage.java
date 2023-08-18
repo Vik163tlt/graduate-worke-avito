@@ -3,7 +3,6 @@ package ru.skypro.homework.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.skypro.homework.model.Ad;
 
 import javax.persistence.*;
 

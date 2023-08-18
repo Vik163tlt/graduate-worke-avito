@@ -23,20 +23,6 @@ public class WebSecurityConfig {
             "/register"
     };
 
-
-
-
-    //    @Bean
-//    public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
-//        UserDetails user =
-//                User.builder()
-//                        .username("user@gmail.com")
-//                        .password("password")
-//                        .passwordEncoder(passwordEncoder::encode)
-//                        .roles(RoleDto.USER.name())
-//                        .build();
-//        return new InMemoryUserDetailsManager(user);
-//    }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf()
@@ -56,7 +42,6 @@ public class WebSecurityConfig {
                 .httpBasic(withDefaults());
         return http.build();
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {

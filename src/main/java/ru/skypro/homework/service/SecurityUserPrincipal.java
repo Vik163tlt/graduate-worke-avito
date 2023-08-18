@@ -1,4 +1,4 @@
-package ru.skypro.homework.service.impl;
+package ru.skypro.homework.service;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,6 +6,7 @@ import ru.skypro.homework.dto.UserDetailsDto;
 import java.util.Collection;
 
 public class SecurityUserPrincipal implements UserDetails {
+
     private UserDetailsDto userDetailsDto;
 
     // Конструктор класса SecurityUserPrincipal,

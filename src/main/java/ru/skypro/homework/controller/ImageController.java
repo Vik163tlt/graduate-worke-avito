@@ -13,10 +13,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 @Slf4j
-@CrossOrigin(value = "http://localhost:3000")
 @RestController
-
+@CrossOrigin(value = "http://localhost:3000")
 public class ImageController {
+
        @GetMapping(value = "/src/main/resources/users/{directory}", produces = {MediaType.IMAGE_PNG_VALUE})
     public byte[] getUserImage(@PathVariable String directory) {
         try {
@@ -38,5 +38,4 @@ public class ImageController {
             throw new RuntimeException(e);
         }
     }
-
 }

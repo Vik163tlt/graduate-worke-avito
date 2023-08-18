@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.skypro.homework.dto.NewPasswordDto;
 import ru.skypro.homework.dto.UpdateUserDto;
-import ru.skypro.homework.model.User;
-import ru.skypro.homework.service.UserMapperService;
-import ru.skypro.homework.service.impl.UserService;
+import ru.skypro.homework.mappers.UserMapperService;
+import ru.skypro.homework.service.UserService;
 
 import java.io.IOException;
 
@@ -72,6 +71,5 @@ public class UsersController {
     public ResponseEntity<?> setPassword(@RequestBody NewPasswordDto newPasswordDto) {
         userService.updatePassword(newPasswordDto);
         return ResponseEntity.ok().build();
-
     }
 }

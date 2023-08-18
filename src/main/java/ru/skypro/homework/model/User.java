@@ -15,8 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 public class User {
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -43,15 +41,4 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;
-
-    public User(Integer id, String username, String password, String firstName, String lastName, String phone, String imagePath, Role role) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.imagePath = imagePath;
-        this.role = role;
-    }
 }

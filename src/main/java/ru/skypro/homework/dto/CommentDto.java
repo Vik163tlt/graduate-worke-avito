@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class CommentDto {
     Integer author;
     String authorImage;
@@ -13,9 +14,5 @@ public class CommentDto {
     String text;
 
     public CommentDto(Integer userId, String image, String firstName, Long createdTime, Integer comments, String text) {
-    }
-
-    public CommentDto() {
-
     }
 }

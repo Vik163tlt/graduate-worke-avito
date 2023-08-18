@@ -2,7 +2,7 @@ package ru.skypro.homework.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,17 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import ru.skypro.homework.dto.CommentDto;
 import ru.skypro.homework.dto.CommentsDto;
 import ru.skypro.homework.dto.CreateOrUpdateCommentDto;
-import ru.skypro.homework.service.impl.CommentsService;
+import ru.skypro.homework.service.CommentsService;
 
 @Slf4j
 @CrossOrigin(value = "http://localhost:3000")
 @RestController
+@AllArgsConstructor
 @RequestMapping("/ads")
 public class CommentsController {
-
-    public CommentsController(CommentsService commentsService) {
-        this.commentsService = commentsService;
-    }
 
     private final CommentsService commentsService;
 

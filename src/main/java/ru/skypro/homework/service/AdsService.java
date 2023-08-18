@@ -1,6 +1,5 @@
-package ru.skypro.homework.service.impl;
+package ru.skypro.homework.service;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.skypro.homework.dto.*;
@@ -8,14 +7,13 @@ import ru.skypro.homework.exception.UserNotFoundException;
 import ru.skypro.homework.model.Ad;
 import ru.skypro.homework.model.User;
 import ru.skypro.homework.repository.AdsRepository;
-import ru.skypro.homework.service.AdMapperService;
+import ru.skypro.homework.mappers.AdMapperService;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class AdsService {
 
     private final AdsRepository adsRepository;
@@ -23,11 +21,13 @@ public class AdsService {
     private final UserService userService;
     private final ImageService imageService;
 
-
-    public AdsDto getAllAds() {
-        List<Ad> allAds = adsRepository.findAll();
-        return new AdsDto(allAds.size(), adMapperService.adListToAdDTOList(allAds));
+    public AdsService(AdsRepository adsRepository, AdMapperService adMapperService, UserService userService, ImageService imageService) {
+        this.adsRepository = adsRepository;
+        this.adMapperService = adMapperService;
+        this.userService = userService;
+        this.imageService = imageService;
     }
+
 
     public AdDto addAd(CreateOrUpdateAdDto properties, MultipartFile image) throws IOException {
         User user = userService.getUser();
@@ -88,6 +88,11 @@ public class AdsService {
                 .map(adMapperService::mapToDto)
                 .collect(Collectors.toList());
         return new AdsDto(adList.size(), adList);
+    }
+
+    public AdsDto getAllAds() {
+        List<Ad> allAds = adsRepository.findAll();
+        return new AdsDto(allAds.size(), adMapperService.adListToAdDTOList(allAds));
     }
 }
 

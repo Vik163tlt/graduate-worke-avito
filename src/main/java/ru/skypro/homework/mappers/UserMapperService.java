@@ -1,23 +1,12 @@
-package ru.skypro.homework.service;
+package ru.skypro.homework.mappers;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import ru.skypro.homework.dto.RegisterDto;
 import ru.skypro.homework.dto.UserDto;
 import ru.skypro.homework.model.User;
 
-@Service
+@Component
 public class UserMapperService {
-
-    public User mapToEntity(UserDto userDto) {
-        User userEntity = new User();
-        userEntity.setId(userDto.getId());
-        userEntity.setUsername(userDto.getEmail());
-        userEntity.setFirstName(userDto.getFirstName());
-        userEntity.setLastName(userDto.getLastName());
-        userEntity.setPhone(userDto.getPhone());
-        userEntity.setImagePath(userDto.getImage());
-        return userEntity;
-    }
 
     public UserDto mapToDto(User userEntity) {
         UserDto userDto = new UserDto();

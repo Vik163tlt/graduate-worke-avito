@@ -1,4 +1,4 @@
-package ru.skypro.homework.service.impl;
+package ru.skypro.homework.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
@@ -19,7 +19,7 @@ public class ImageService {
 
     private final UserService userService;
 
-@Lazy
+    @Lazy
     public ImageService(UserService userService) {
         this.userService = userService;
     }

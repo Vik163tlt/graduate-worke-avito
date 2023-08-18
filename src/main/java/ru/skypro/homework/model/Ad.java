@@ -6,14 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @ToString
 @Entity
-@Table(name = "ads")
 @AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "ads")
 public class Ad {
 
     @Id
@@ -36,13 +35,4 @@ public class Ad {
 
     @Column(name = "title")
     private String title;
-
-    public Ad(User user, String description, String imageAddress, Integer price, String title) {
-    }
-
-
-
-    public Ad() {
-
-    }
 }

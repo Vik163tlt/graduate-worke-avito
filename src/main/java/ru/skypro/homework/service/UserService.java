@@ -1,6 +1,5 @@
-package ru.skypro.homework.service.impl;
+package ru.skypro.homework.service;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,12 +18,17 @@ import ru.skypro.homework.repository.UserRepository;
 import java.io.IOException;
 
 @Service
-@RequiredArgsConstructor
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
     private final ImageService service;
+
+    public UserService(UserRepository userRepository, PasswordEncoder encoder, ImageService service) {
+        this.userRepository = userRepository;
+        this.encoder = encoder;
+        this.service = service;
+    }
 
     public User getUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -59,9 +63,4 @@ public class UserService implements UserDetailsService {
         UserDetailsDto userDetailsDto = new UserDetailsDto(user.getUsername(), user.getPassword(), user.getId(), user.getRole());
         return new UserPrincipal(userDetailsDto);
     }
-
-//    public boolean userExists (String username ){
-//        userRepository.findUserByUsername(username).isPresent();
-//        return true;
-//    }
 }

@@ -1,8 +1,11 @@
 package ru.skypro.homework.dto;
 
+
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class ExtendedAdDto {
 
     Integer pk;

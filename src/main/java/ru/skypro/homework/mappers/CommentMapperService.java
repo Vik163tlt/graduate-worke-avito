@@ -1,4 +1,4 @@
-package ru.skypro.homework.service;
+package ru.skypro.homework.mappers;
 
 import org.springframework.stereotype.Component;
 import ru.skypro.homework.dto.CommentDto;
@@ -24,12 +24,6 @@ public class CommentMapperService {
     }
 
     public CommentDto mapToDto(Comment commentEntity) {
-//        Integer author;
-//        String authorImage;
-//        String authorFirstName;
-//        Long createdAt;
-//        Integer pk;
-//        String text;
         CommentDto commentDTO = new CommentDto();
        commentDTO.setAuthor(commentEntity.getAuthor().getId());
        commentDTO.setAuthorImage(commentEntity.getAuthor().getImagePath());
@@ -37,8 +31,6 @@ public class CommentMapperService {
        commentDTO.setCreatedAt(commentEntity.getCreatedTime());
        commentDTO.setPk(commentEntity.getCommentId());
        commentDTO.setText(commentEntity.getText());
-
-
         return commentDTO;
     }
     public List CommentListToCommentDtoToList(List<Comment>comments) {

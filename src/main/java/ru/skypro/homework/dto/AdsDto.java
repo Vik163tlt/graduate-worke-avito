@@ -6,12 +6,12 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 public class AdsDto {
     Integer count;
     List<AdDto> results;
 
-    public AdsDto(List<AdDto> allAdsUser) {
+    public AdsDto(Integer count, List<AdDto> results) {
+        this.count = count;
+        this.results = results;
     }
-
 }

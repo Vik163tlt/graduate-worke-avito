@@ -1,8 +1,6 @@
-package ru.skypro.homework.service.impl;
+package ru.skypro.homework.service;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import ru.skypro.homework.dto.*;
 import ru.skypro.homework.model.Ad;
@@ -10,22 +8,26 @@ import ru.skypro.homework.model.Comment;
 import ru.skypro.homework.model.User;
 import ru.skypro.homework.repository.AdsRepository;
 import ru.skypro.homework.repository.CommentsRepository;
-import ru.skypro.homework.service.AdMapperService;
-import ru.skypro.homework.service.CommentMapperService;
+import ru.skypro.homework.mappers.CommentMapperService;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class CommentsService {
 
     private final CommentsRepository commentsRepository;
     private final AdsRepository adsRepository;
     private final UserService userService;
     private final CommentMapperService commentMapperService;
+
+    public CommentsService(CommentsRepository commentsRepository, AdsRepository adsRepository, UserService userService, CommentMapperService commentMapperService) {
+        this.commentsRepository = commentsRepository;
+        this.adsRepository = adsRepository;
+        this.userService = userService;
+        this.commentMapperService = commentMapperService;
+    }
 
     public CommentsDto getCommentsById(Integer adId) {
         List<Comment> comments = commentsRepository
@@ -42,12 +44,6 @@ public class CommentsService {
     public CommentDto addComment(Integer id, CreateOrUpdateCommentDto text) {
         User user = userService.getUser();
         Ad ad = adsRepository.findById(id).orElseThrow();
-//        Integer author;
-//        String authorImage;
-//        String authorFirstName;
-//        Long createdAt;
-//        Integer pk;
-//        String text;
         Comment comment = new Comment();
         comment.setAuthor(user);
         comment.setCreatedTime(Instant.now().toEpochMilli());
@@ -55,17 +51,16 @@ public class CommentsService {
         comment.setAd(ad.getPk());
         commentsRepository.save(comment);
         return commentMapperService.mapToDto(comment);
-
     }
+
     @Secured({"ADMIN", "USER"})
     public void deleteComment(Integer AdId, Integer commentId) {
         User user = userService.getUser();
         Comment comment = commentsRepository.getByCommentId(commentId);
-         if (user.getId().equals(comment.getAuthor().getId()) || user.getRole() == Role.ADMIN) {
+        if (user.getId().equals(comment.getAuthor().getId()) || user.getRole() == Role.ADMIN) {
             commentsRepository.delete(comment);
         } else throw new RuntimeException("Такой комментарий не существует");
     }
-
 
     public CommentDto updateComment(Integer IdAd, Integer commentId, CreateOrUpdateCommentDto newComment) {
         User user = userService.getUser();
@@ -76,7 +71,6 @@ public class CommentsService {
             return commentMapperService.mapToDto(comment);
         } else throw new RuntimeException("Такой комментарий не существует");
     }
-
-    }
+}
 
 
